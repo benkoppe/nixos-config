@@ -102,18 +102,52 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # core tools
+    tealdeer # a very fast version o f tldr
+    fastfetch
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    just # justfile
+    git
+    git-lfs # used by huggingface models
+
+    # archives
+    zip
+    xz
+    p7zip
+
+    # text processing
+    gnugrep # GNU grep, provides `grep`/`egrep`/`fgrep`
+    gnused # GNU ssed, very powerful for text replacement
+    gawk # GNU awk, pattern scanning & processing
+    jq # lightweight and flexible command-line JSON processor
+
+    # networking tools
+    mtr # network diagnostic tool
+    iperf3
+    dnsutils # `dig` + `nslookup`
+    ldns # replacement of `dig`, providing the command `drill`
     wget
     curl
-    git
+    aria2 # a lightweight multi-protocol & multi-source command-line download utility
+    socat # replacement of openbsd-netcat
+    nmap # a utility for network discovery and security auditing
+    ipcalc # calculator for IPv4/v6 addresses
+
+    # misc
+    file
+    findutils
+    which
+    tree
+    gnutar
+    rsync
+
     sysstat
     lm_sensors # for `sensors` command
     fastfetch
     # minimal screen capture tool, used by i3 blur lock to take a screenshot
     # print screen key is also bound to this tool in i3 config
-    scrot
-    xfce.thunar # xfce4's file manager
-    nnn # terminal file manager
+    # scrot
+    # xfce.thunar # xfce4's file manager
 ];
 
   # Set the default editor to vim.
