@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ../../home/core.nix
+
+    ../../home/programs
   ];
 
   programs.git = {
@@ -11,7 +13,4 @@
   # Enable automatic login for the user.
   # services.displayManager.autoLogin.enable = true;
   # services.displayManager.autoLogin.user = "test";
-
-  # Install firefox.
-  programs.firefox.enable = true;
 }
