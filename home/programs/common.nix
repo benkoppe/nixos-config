@@ -12,6 +12,7 @@
     # utils
     ripgrep
     htop
+    lazygit
 
     # misc
     libnotify
