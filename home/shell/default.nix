@@ -3,7 +3,7 @@
   c = config.xdg.configHome;
   cache = config.xdg.cacheHome;
 in {
-  import = [
+  imports = [
   ./common.nix
   ./zsh.nix
   ];
