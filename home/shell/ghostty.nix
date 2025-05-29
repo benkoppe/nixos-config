@@ -16,5 +16,6 @@
       mouse-shift-cpature = false;
 
       config-file = "?config.local";
+    };
   };
 }
