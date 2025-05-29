@@ -95,13 +95,24 @@
   };
 
   # Enable the OpenSSH daemon
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = true;
+      PermitRootLogin = "no"; # disable root login
+      PasswordAuthentication = false; # disable password login
+    };
+    openFirewall = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
+
+  # automatically start openssh agent on login
+  programs.ssh.startAgent = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -183,4 +194,5 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
 }
