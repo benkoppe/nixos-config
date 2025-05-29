@@ -195,4 +195,5 @@
   #   enableSSHSupport = true;
   # };
 
+  home-manager.backupFileExtension = "home-manager.bak";
 }
