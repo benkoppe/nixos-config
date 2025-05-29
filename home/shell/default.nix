@@ -6,7 +6,7 @@ in {
   imports = [
   ./common.nix
   ./zsh.nix
-  ./terminals.nix
+  ./ghostty.nix
   ];
 
   # add environment variables
