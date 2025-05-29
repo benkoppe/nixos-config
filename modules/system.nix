@@ -109,6 +109,7 @@
     just # justfile
     git
     git-lfs # used by huggingface models
+    yadm # dotfiles manager
 
     # archives
     zip
