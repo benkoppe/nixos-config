@@ -14,6 +14,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    dotfiles = {
+      url = "github:benkoppe/dotfiles";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -25,7 +29,7 @@
     nixosConfigurations = {
       nixos-test = let
         username = "test";
-        specialArgs = {inherit username;};
+        specialArgs = {inherit username; inherit (inputs) dotfiles;};
       in
         nixpkgs.lib.nixosSystem {
           inherit specialArgs;
