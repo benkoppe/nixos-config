@@ -1,8 +1,8 @@
 # enable audio
 { config, lib, ... }: let
-  inherit (lib) enabled merge mkIf;
+  inherit (lib) enabled disabled merge mkIf;
 in merge <| mkIf config.isDesktop {
-  services.pulseaudio = enabled;
+  services.pulseaudio = disabled;
   security.rtkit = enabled;
 
   services.pipewire = enabled {
