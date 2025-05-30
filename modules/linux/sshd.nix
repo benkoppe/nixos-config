@@ -1,6 +1,5 @@
 { lib, ... }: let
   inherit (lib) enabled disabled;
-  port = 2222;
 in {
   services.openssh = enabled {
     openFirewall = true;
@@ -19,4 +18,4 @@ in {
 
   # automatically start openssh agent on login
   programs.ssh.startAgent = true;
-};
+}
