@@ -8,10 +8,9 @@ in merge
     mono = pkgs.nerd-fonts.meslo-lg;
 
     inherit (pkgs)
-      material-design-fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-jgc-plus
+      noto-fonts-lgc-plus
       noto-fonts-emoji
     ;
   };
