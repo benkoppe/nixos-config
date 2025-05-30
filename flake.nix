@@ -8,45 +8,87 @@
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+
+    experimental-features = [
+      "cgroups"
+      "flakes"
+      "nix-command"
+      "pipe-operators"
+    ];
+
+    builders-use-substitutes = true;
+    lazy-trees               = true;
+    show-trace               = true;
+    trusted-users            = [ "root" "@build" "@wheel" "@admin" ];
+    use-groups               = true;
+    warn-dirty               = false;
   };
 
+  
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dotfiles = {
       url = "github:benkoppe/dotfiles";
       flake = false;
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  }: {
-    nixosConfigurations = {
-      nixos-test = let
-        username = "test";
-        specialArgs = {inherit username; inherit (inputs) dotfiles;};
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          
-          modules = [
-            ./hosts/nixos-test
+  outputs = inputs @ { nixpkgs, ... }: let
+    inherit (builtins) readDir;
+    inherit (nixpkgs.lib) attrsToList const groupBy listToAttrs mapAttrs nameValuePair;
 
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+    lib = nixpkgs.lib.extend <| import ./lib inputs;
 
-            home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.users.${username} = import ./users/${username}/home.nix;
-          }
-        ];
-      };
-    };
-  };
+    hostsByType = readDir ./hosts
+      |> mapAttrs (name: const <| import ./hosts/${name} lib)
+      |> attrsToList
+      |> groupBy ({ name, value }:
+        if value ? class && value.class == "nixos" then
+          "nixosConfigurations"
+        else
+          "darwinConfigurations")
+      |> mapAttrs (const listToAttrs);
+
+    hostConfigs = hostsByType.darwinConfigurations // hostsByType.nixosConfigurations
+      |> attrsToList
+      |> map ({ name, value }: nameValuePair name value.config)
+      |> listToAttrs;
+  in hostsByType // hostConfigs;
+
+  #outputs = inputs @ {
+  #  self,
+  #  nixpkgs,
+  #  home-manager,
+  #  ...
+  #}: {
+  #  nixosConfigurations = {
+  #    test = let
+  #      username = "test";
+  #      specialArgs = {inherit username; inherit (inputs) dotfiles;};
+  #    in
+  #      nixpkgs.lib.nixosSystem {
+  #        inherit specialArgs;
+  #        system = "x86_64-linux";
+  #        
+  #        modules = [
+  #          ./hosts/test
+
+  #        home-manager.nixosModules.home-manager {
+  #          home-manager.useGlobalPkgs = true;
+  #          home-manager.useUserPackages = true;
+
+  #          home-manager.extraSpecialArgs = inputs // specialArgs;
+  #          home-manager.users.${username} = import ./users/${username}/home.nix;
+  #        }
+  #      ];
+  #    };
+  #  };
+  #};
 }

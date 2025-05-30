@@ -1,10 +1,10 @@
 ## Local Machine
 
 deploy:
-	nixos-rebuild switch --flake .#nixos-test --use-remote-sudo
+	nixos-rebuild switch --flake .#test --use-remote-sudo
 
 debug:
-	nixos-rebuild switch --flake .#nixos-test --use-remote-sudo --show-trace --verbose
+	nixos-rebuild switch --flake .#test --use-remote-sudo --show-trace --verbose
 
 up:
 	nix flake update
