@@ -20,7 +20,7 @@
     lazy-trees               = true;
     show-trace               = true;
     trusted-users            = [ "root" "@build" "@wheel" "@admin" ];
-    use-groups               = true;
+    use-cgroups              = true;
     warn-dirty               = false;
   };
 
@@ -38,6 +38,8 @@
       url = "github:benkoppe/dotfiles";
       flake = false;
     };
+
+    nix.url = "github:DeterminateSystems/nix-src";
   };
 
   outputs = inputs @ { nixpkgs, ... }: let
@@ -56,7 +58,7 @@
           "darwinConfigurations")
       |> mapAttrs (const listToAttrs);
 
-    hostConfigs = hostsByType.darwinConfigurations // hostsByType.nixosConfigurations
+    hostConfigs = hostsByType.nixosConfigurations
       |> attrsToList
       |> map ({ name, value }: nameValuePair name value.config)
       |> listToAttrs;
