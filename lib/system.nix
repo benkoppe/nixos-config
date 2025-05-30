@@ -1,9 +1,15 @@
 inputs: self: super: let
-  inherit (self) attrValues filter getAttrFrompath hasAttrByPath collectNix;
+  inherit (self) attrValues filter getAttrFromPath hasAttrByPath collectNix;
 
   modulesCommon = collectNix ../modules/common;
   modulesLinux  = collectNix ../modules/linux;
   # modulesDarwin = collectNix ../modules/darwin;
+
+  collectInputs = let
+    inputs' = attrValues inputs;
+  in path: inputs'
+    |> filter (hasAttrByPath path)
+    |> map (getAttrFromPath path);
 
   inputModulesLinux  = collectInputs [ "nixosModules"  "default" ];
   inputModulesDarwin = collectInputs [ "darwinModules" "default" ];
