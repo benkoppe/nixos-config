@@ -2,6 +2,6 @@
   inherit (lib) enabled;
 in {
   home-manager.sharedModules = [{
-    programs.btop.enabled = true;
+    programs.btop = enabled;
   }];
 }
