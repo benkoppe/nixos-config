@@ -11,7 +11,7 @@ in {
   };
 
   home-manager.sharedModules = [
-    programs.git = enabled {
+    {programs.git = enabled {
       userName  = "Ben";
       userEmail = "koppe.development@gmail.com";
 
@@ -51,6 +51,8 @@ in {
 
         alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
       };
+
+    };}
 
     (mkIf config.isDesktop {
       programs.gh = enabled {
