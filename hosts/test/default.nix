@@ -1,5 +1,5 @@
 lib: lib.nixosSystem' ({ config, lib, ... }: let
-  inherit (lib) collectNix remove;
+  inherit (lib) collectNix remove enabled;
 in {
   imports = collectNix ./. |> remove ./default.nix;
 
