@@ -1,4 +1,4 @@
-lib: lib.nixosSystem' ({ config, lib, ... }: let
+lib: lib.nixosSystem' ({ config, lib, pkgs, ... }: let
   inherit (lib) collectNix remove enabled;
 in {
   imports = collectNix ./. |> remove ./default.nix;
@@ -9,6 +9,7 @@ in {
       description  = "Test";
       isNormalUser = true;
       extraGroups  = [ "wheel" ];
+      shell = pkgs.zsh;
     };
   };
 
