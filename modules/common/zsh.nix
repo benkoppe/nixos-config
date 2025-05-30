@@ -1,4 +1,4 @@
-{ config, lib, dotfiles, ... }:
+{ config, lib, dotfiles, ... }: let
   inherit (lib) enabled;
 in {
   programs.zsh = enabled;
