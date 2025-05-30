@@ -50,6 +50,13 @@ in {
         transfer.fsckobjects = true;
 
         alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
+
+        # replace https with ssh
+        url = {
+          "ssh://git@github.com/benkoppe" = {
+            insteadOf = "https://github.com/benkoppe";
+          };
+        };
       };
 
     };}
