@@ -40,6 +40,7 @@
     };
 
     nix.url = "github:DeterminateSystems/nix-src";
+    nil.url = "github:oxalica/nil";
   };
 
   outputs = inputs @ { nixpkgs, ... }: let
