@@ -12,6 +12,9 @@ in {
       p7zip
       rsync
       yt-dlp
+
+      vim
+      just
     ;
 
     fortune = pkgs.fortune.override { withOffensive = true; };
