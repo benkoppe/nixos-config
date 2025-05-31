@@ -10,7 +10,7 @@ in
   home-manager.sharedModules = [
     {
       programs.tmux = enabled {
-        tmuxKey = "space";
+        shortcut = "space";
 
         mouse = true;
         escapeTime = 0;
@@ -18,6 +18,7 @@ in
         baseIndex = 1;
         keyMode = "vi";
         terminal = "tmux-256color";
+        historyLimit = 50000;
 
         sensibleOnTop = true;
         plugins = with pkgs; [
@@ -29,7 +30,10 @@ in
         ];
 
         extraConfig = ''
+          set-option -ga terminal-overrides ",*:Tc"
+
           set -g set-titles on
+          set -g renumber-windows on
 
           bind-key c new-window -c  "#{pane_current_path}"
 
