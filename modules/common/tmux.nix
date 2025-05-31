@@ -27,6 +27,18 @@ in
           tmuxPlugins.cpu
           tmuxPlugins.extrakto
           tmuxPlugins.tmux-which-key
+          {
+            plugin = tmuxPlugins.mkTmuxPlugin {
+              pluginName = "tmux-window-name";
+              version = "1.0.0";
+              src = pkgs.fetchFromGitHub {
+                owner = "ofirgall";
+                repo = "tmux-window-name";
+                rev = "master";
+                sha256 = "sha256-klS3MoGQnEiUa9RldKGn7D9yxw/9OXbfww43Wi1lV/w=";
+              };
+            };
+          }
         ];
 
         extraConfig = ''
