@@ -17,6 +17,10 @@ merge
       programs.chromium = enabled {
         inherit extensions;
       };
+
+      programs.brave = enabled {
+        inherit extensions;
+      };
     }
   ];
 }
