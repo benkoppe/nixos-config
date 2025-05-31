@@ -15,6 +15,16 @@ return {
     },
   },
 
+  -- use nixd lsp
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        nixd = {},
+      },
+    },
+  },
+
   -- changing behavior of cmp scrolling
   {
     "hrsh7th/nvim-cmp",
@@ -29,12 +39,12 @@ return {
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
       }))
-    opts.experimental.ghost_text = nil
-    -- opts.snippet = {
-    --   expand = function(args)
-    --     vim.snippet.expand(args.body)
-    --   end,
-    -- }
+      opts.experimental.ghost_text = nil
+      -- opts.snippet = {
+      --   expand = function(args)
+      --     vim.snippet.expand(args.body)
+      --   end,
+      -- }
     end,
   },
 
@@ -47,7 +57,7 @@ return {
         "<c-k>",
         function()
           local ls = require("luasnip")
-        if ls.expand_or_jumpable() then
+          if ls.expand_or_jumpable() then
             ls.expand_or_jump()
           end
         end,
@@ -60,7 +70,7 @@ return {
         "<c-j>",
         function()
           local ls = require("luasnip")
-        if ls.jumpable(-1) then
+          if ls.jumpable(-1) then
             ls.jump(-1)
           end
         end,
