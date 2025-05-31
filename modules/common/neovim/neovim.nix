@@ -6,7 +6,13 @@
   ...
 }:
 let
-  inherit (lib) enabled merge mkIf;
+  inherit (lib)
+    enabled
+    merge
+    mkIf
+    attrValues
+    optionalAttrs
+    ;
 in
 merge
 <| mkIf config.isDesktop {
@@ -17,16 +23,69 @@ merge
       programs.mnw = enabled {
         luaFiles = [ ./init.lua ];
 
-        extraBinPath = [
-          pkgs.ripgrep
-          pkgs.fzf
+        extraBinPath =
+          attrValues
+          <|
+            {
+              inherit (pkgs)
+                ripgrep
+                fzf
 
-          # LSPs
-          pkgs.stylua
-          pkgs.nixd # nix lsp
-          pkgs.nixfmt-rfc-style
-          pkgs.prettierd
-        ];
+                ## LSPs & formatters (this is basically mason)
+
+                # general formatter
+                prettierd
+
+                # lua
+                stylua
+                lua-language-server
+
+                # nix
+                nixd
+                nixfmt-rfc-style
+
+                # python
+                black
+                pyright
+                basedpyright
+                ruff
+
+                # go
+                gopls
+                gofumpt
+                gotools
+
+                # docker
+                dockerfile-language-server-nodejs
+                docker-compose-language-service
+
+                # webdev
+                svelte-language-server
+                tailwindcss-language-server
+                vue-language-server
+                vtsls # typescript
+
+                # random
+                bash-language-server
+                yaml-language-server
+                vscode-langservers-extracted
+
+                csharpier
+                ktlint
+                markdownlint-cli2
+                rubocop
+                shfmt
+                sqlfluff
+                ;
+
+              # these packages must be imported differently
+              inherit (pkgs.rubyPackages) erb-formatter;
+              inherit (pkgs.php83Packages) php-cs-fixer;
+            }
+            # clipboard management for linux
+            // optionalAttrs config.isLinux {
+              inherit (pkgs) wl-clipboard;
+            };
 
         plugins = {
           start = [
