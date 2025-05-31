@@ -1,11 +1,13 @@
-{ lib, ... }: let
+{ lib, ... }:
+let
   inherit (lib) enabled disabled;
-in {
+in
+{
   services.openssh = enabled {
     openFirewall = true;
     settings = {
-      X11Forwarding          = true;
-      PermitRootLogin        = "no";
+      X11Forwarding = true;
+      PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
   };

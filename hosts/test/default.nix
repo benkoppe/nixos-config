@@ -1,51 +1,62 @@
-lib: lib.nixosSystem' ({ config, lib, pkgs, ... }: let
-  inherit (lib) collectNix remove enabled;
-in {
-  imports = collectNix ./. |> remove ./default.nix;
+lib:
+lib.nixosSystem' (
+  {
+    lib,
+    pkgs,
+    ...
+  }:
+  let
+    inherit (lib) collectNix remove enabled;
+  in
+  {
+    imports = collectNix ./. |> remove ./default.nix;
 
-  users.users = {
-    root = {};
-    test = {
-      description  = "Test";
-      isNormalUser = true;
-      extraGroups  = [ "wheel" ];
-      shell = pkgs.zsh;
+    users.users = {
+      root = { };
+      test = {
+        description = "Test";
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+        shell = pkgs.zsh;
+      };
     };
-  };
 
-  time.timeZone = "America/Los_Angeles";
+    time.timeZone = "America/Los_Angeles";
 
-  nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
 
-  home-manager.users = {
-    root = {};
-    test = {};
-  };
+    home-manager.users = {
+      root = { };
+      test = { };
+    };
 
-  boot.loader.grub = enabled {
-    device = "/dev/vda";
-    useOSProber = true;
-  };
+    boot.loader.grub = enabled {
+      device = "/dev/vda";
+      useOSProber = true;
+    };
 
-  networking = {
-    hostName = "test";
-    
-    # wireless.enable = true;
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  };
+    networking = {
+      hostName = "test";
 
-  system.stateVersion = "25.05";
-  home-manager.sharedModules = [{
-    home.stateVersion = "25.05";
-  }];
+      # wireless.enable = true;
+      # proxy.default = "http://user:password@proxy:port/";
+      # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    };
 
-  # Enable auto login
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "test";
+    system.stateVersion = "25.05";
+    home-manager.sharedModules = [
+      {
+        home.stateVersion = "25.05";
+      }
+    ];
 
-  # Add qemu-guest-agent
-  services.qemuGuest.enable = true;
-  # Add spice-vdagent
-  services.spice-vdagentd.enable = true;
-})
+    # Enable auto login
+    services.displayManager.autoLogin.enable = true;
+    services.displayManager.autoLogin.user = "test";
+
+    # Add qemu-guest-agent
+    services.qemuGuest.enable = true;
+    # Add spice-vdagent
+    services.spice-vdagentd.enable = true;
+  }
+)

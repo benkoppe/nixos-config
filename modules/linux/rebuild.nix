@@ -1,6 +1,6 @@
 {
   system = {
-    switch.enableNg  = true;
+    switch.enableNg = true;
     rebuild.enableNg = true;
   };
 }
