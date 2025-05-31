@@ -41,6 +41,8 @@
 
     nix.url = "github:DeterminateSystems/nix-src";
     nil.url = "github:oxalica/nil";
+
+    mnw.url = "github:Gerg-L/mnw";
   };
 
   outputs = inputs @ { nixpkgs, ... }: let
