@@ -12,13 +12,18 @@ in
   home-manager.sharedModules = [
     {
       programs.zsh = enabled {
+        oh-my-zsh = enabled {
+          plugins = [
+            "git"
+            "sudo"
+            "thefuck"
+          ];
+        };
+
         antidote = enabled {
+          useFriendlyNames = true;
           plugins = [
             ''
-              getantidote/use-omz
-              ohmyzsh/ohmyzsh path:lib/git.zsh
-              ohmyzsh/ohmyzsh path:plugins/thefuck
-
               zdharma-continuum/fast-syntax-highlighting kind:defer
               zsh-users/zsh-history-substring-search
               zsh-users/zsh-autosuggestions
@@ -66,7 +71,19 @@ in
           }
         ];
 
-        initContent = "autoload -Uz promptinit && promptinit && prompt powerlevel10k\nfastfetch";
+        initContent =
+          let
+            before = lib.mkBefore ''
+              fastfetch
+            '';
+            after = lib.mkOrder 1500 ''
+              autoload -Uz promptinit && promptinit && prompt powerlevel10k
+            '';
+          in
+          lib.mkMerge [
+            before
+            after
+          ];
       };
     }
   ];
