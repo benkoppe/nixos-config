@@ -10,6 +10,7 @@ in merge <| mkIf config.isDesktop {
       extraBinPath = [
 	      pkgs.ripgrep
 	      pkgs.fzf
+        pkgs.stylua
       ];
 
       plugins = {
@@ -20,10 +21,7 @@ in merge <| mkIf config.isDesktop {
 
 	dev.myconfig = {
 	  pure = ./.;
-	  impure = 
-	    # This is a hack, it should be an absolute path
-	    # here it'll only work from this directory
-	    "/' .. vim.uv.cwd()";
+	  impure = "/home/test/.nixos-config/modules/common/neovim";
 	};
       };
     };
