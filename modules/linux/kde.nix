@@ -9,7 +9,7 @@ merge
   services.desktopManager.plasma6 = enabled;
 
   # Configure keymap in X11
-  services.xserved = enabled {
+  services.xserver = enabled {
     xkb = {
       layout = "us";
       variant = "";
