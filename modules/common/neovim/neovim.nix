@@ -5,11 +5,11 @@ in merge <| mkIf config.isDesktop {
     imports = [ inputs.mnw.homeManagerModules.default ];
 
     programs.mnw = enabled {
-      luaFiles = [];
+      luaFiles = [ ./init.lua ];
 
       extraBinPath = [
-	pkgs.ripgrep
-	pkgs.fzf
+	      pkgs.ripgrep
+	      pkgs.fzf
       ];
 
       plugins = {
