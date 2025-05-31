@@ -1,17 +1,18 @@
 { config, lib, ... }:
 let
-  inherit (lib) merge mkIf;
+  inherit (lib) merge mkIf enabled;
 in
 merge
 <| mkIf config.isDesktop {
-  services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = enabled;
+  services.desktopManager.plasma6 = enabled;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserved = enabled {
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 }
