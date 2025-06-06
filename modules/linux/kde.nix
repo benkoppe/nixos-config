@@ -14,5 +14,9 @@ merge
       layout = "us";
       variant = "";
     };
+
+    libinput = enabled {
+      naturalScrolling = true;
+    };
   };
 }
