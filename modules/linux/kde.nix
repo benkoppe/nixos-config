@@ -14,11 +14,11 @@ merge
       layout = "us";
       variant = "";
     };
+  };
 
-    libinput = enabled {
-      mouse = {
-        accelProfile = "flat";
-      };
+  services.libinput = enabled {
+    mouse = {
+      accelProfile = "flat";
     };
   };
 }
