@@ -36,7 +36,11 @@ merge
 
   home-manager.sharedModules = [
     {
-      xsession.windowManager.i3 = enabled;
+      xsession.windowManager.i3 = enabled {
+        config = {
+          modifier = "Mod4";
+        };
+      };
     }
   ];
 }
