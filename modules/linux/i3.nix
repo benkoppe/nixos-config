@@ -30,10 +30,6 @@ merge
     };
   };
 
-  services.displayManager = {
-    defaultSession = "none+i3";
-  };
-
   home-manager.sharedModules = [
     {
       xsession.windowManager.i3 = enabled {

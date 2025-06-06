@@ -4,5 +4,8 @@ let
 in
 merge
 <| mkIf config.isDesktop {
-  services.displayManager.sddm = enabled;
+  services.displayManager = {
+    sddm = enabled;
+    defaultSession = "none+i3";
+  };
 }
