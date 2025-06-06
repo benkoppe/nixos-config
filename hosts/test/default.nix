@@ -58,5 +58,8 @@ lib.nixosSystem' (
     services.qemuGuest.enable = true;
     # Add spice-vdagent
     services.spice-vdagentd.enable = true;
+
+    # Enable virtualisation
+    virtualisation.qemu.guestAgent.enable = true;
   }
 )
