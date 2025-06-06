@@ -16,7 +16,9 @@ merge
     };
 
     libinput = enabled {
-      naturalScrolling = true;
+      mouse = {
+        accelProfile = "flat";
+      };
     };
   };
 }
