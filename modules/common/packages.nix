@@ -61,7 +61,6 @@ in
           thunderbird
           krita
 
-          nouveau
           virgl
           ;
 

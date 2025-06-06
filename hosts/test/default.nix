@@ -3,6 +3,7 @@ lib.nixosSystem' (
   {
     lib,
     pkgs,
+    config,
     ...
   }:
   let
@@ -58,5 +59,8 @@ lib.nixosSystem' (
     services.qemuGuest.enable = true;
     # Add spice-vdagent
     services.spice-vdagentd.enable = true;
+
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    services.xserver.videoDrivers = [ "nvidia" ];
   }
 )
