@@ -1,10 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # i3 related options
-  environment.pathsToLink = ["/libexec"]; # links /libexec from derivations to /run/current-system/sw
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
   services.displayManager.defaultSession = "none+i3";
   services.xserver = {
     enable = true; # enable X11
-    
+
     desktopManager = {
       xterm.enable = false;
     };
@@ -16,7 +17,7 @@
 
     windowManager.i3 = {
       enable = true;
-      extraPackages = with pkgs; [];
+      extraPackages = with pkgs; [ ];
     };
 
     # Configure keymap in X11
