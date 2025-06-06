@@ -58,8 +58,6 @@ in
         inherit (pkgs)
           thunderbird
           krita
-
-          virgl
           ;
 
       };
