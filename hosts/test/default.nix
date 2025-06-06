@@ -59,9 +59,5 @@ lib.nixosSystem' (
     services.qemuGuest.enable = true;
     # Add spice-vdagent
     services.spice-vdagentd.enable = true;
-
-    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-    hardware.nvidia.open = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
   }
 )
