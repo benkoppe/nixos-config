@@ -26,6 +26,7 @@ in
           vim
           just
 
+          treefmt
           nixfmt-rfc-style
           ;
 
