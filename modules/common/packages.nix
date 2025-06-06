@@ -25,6 +25,8 @@ in
 
           vim
           just
+
+          nixfmt-rfc-style
           ;
 
         fortune = pkgs.fortune.override { withOffensive = true; };
