@@ -3,22 +3,6 @@ let
   inherit (lib) merge mkIf enabled;
 in
 merge
-<| mkIf config.isDesktop {
-
-  services.displayManager.sddm = enabled;
+<| mkIf (builtins.false && config.isDesktop) {
   services.desktopManager.plasma6 = enabled;
-
-  # Configure keymap in X11
-  services.xserver = enabled {
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
-
-  services.libinput = enabled {
-    mouse = {
-      accelProfile = "flat";
-    };
-  };
 }

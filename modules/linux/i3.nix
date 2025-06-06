@@ -23,10 +23,20 @@ merge
     windowManager.i3 = enabled {
       extraPackages = with pkgs; [
         rofi
+        i3status
         i3lock
         i3blocks
       ];
     };
   };
 
+  services.displayManager = {
+    defaultSession = "none+i3";
+  };
+
+  home-manager.sharedModules = [
+    {
+      xsession.windowManager.i3 = enabled;
+    }
+  ];
 }
