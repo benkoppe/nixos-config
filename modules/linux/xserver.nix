@@ -18,4 +18,19 @@ merge
       accelProfile = "flat";
     };
   };
+
+  home-manager.sharedModules = [
+    {
+      xsession.initExtra = ''
+        # auto resize in response to VM resizes
+        $(
+          xev -root -event -randr |
+            grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+            while read ; do
+              xrandr --output Virtual-1 --auto
+            done
+        ) &
+      '';
+    }
+  ];
 }
