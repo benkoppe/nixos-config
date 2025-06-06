@@ -60,6 +60,9 @@ in
         inherit (pkgs)
           thunderbird
           krita
+
+          nouveau
+          virgl
           ;
 
       };
