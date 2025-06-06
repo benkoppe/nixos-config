@@ -51,8 +51,6 @@ in
           python314
           uv
 
-          thefuck
-
           qbittorrent
           ;
       }
