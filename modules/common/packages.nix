@@ -59,6 +59,6 @@ in
           thunderbird
           krita
           ;
-
+        inherit (pkgs.xorg) xev;
       };
 }
