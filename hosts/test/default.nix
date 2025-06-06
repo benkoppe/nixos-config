@@ -52,8 +52,8 @@ lib.nixosSystem' (
     ];
 
     # Enable auto login
-    services.displayManager.autoLogin.enable = true;
-    services.displayManager.autoLogin.user = "test";
+    # services.displayManager.autoLogin.enable = true;
+    # services.displayManager.autoLogin.user = "test";
 
     # Add qemu-guest-agent
     services.qemuGuest.enable = true;
