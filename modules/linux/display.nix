@@ -24,4 +24,15 @@ merge
       accelProfile = "flat";
     };
   };
+
+  # Enable auto login
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "test";
+
+}
+<| mkIf config.isVM {
+  # Add qemu-guest-agent
+  services.qemuGuest.enable = true;
+  # Add spice-vdagent
+  services.spice-vdagentd.enable = true;
 }

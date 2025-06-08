@@ -3,7 +3,6 @@ lib.nixosSystem' (
   {
     lib,
     pkgs,
-    config,
     ...
   }:
   let
@@ -52,14 +51,5 @@ lib.nixosSystem' (
         home.stateVersion = "25.05";
       }
     ];
-
-    # Enable auto login
-    # services.displayManager.autoLogin.enable = true;
-    # services.displayManager.autoLogin.user = "test";
-
-    # Add qemu-guest-agent
-    services.qemuGuest.enable = true;
-    # Add spice-vdagent
-    services.spice-vdagentd.enable = true;
   }
 )
