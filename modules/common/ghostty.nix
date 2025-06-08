@@ -15,19 +15,27 @@ merge
         # Bat syntax points to emptyDirectory
         installBatSyntax = !config.isDarwin;
 
-        settings = {
-          window-colorspace = "display-p3";
-          theme = "0x96f";
+        settings =
+          merge
+            {
+              window-colorspace = "display-p3";
+              theme = "0x96f";
 
-          font-family = "MesloLG Nerd Font Mono";
-          font-size = 10;
+              font-family = "MesloLG Nerd Font Mono";
+              font-size = 10;
 
-          window-padding-x = 5;
-          window-padding-y = 10;
+              window-padding-x = 5;
+              window-padding-y = 10;
 
-          confirm-close-surface = false;
-          mouse-shift-capture = false;
-        };
+              confirm-close-surface = false;
+              mouse-shift-capture = false;
+            }
+            (
+              mkIf config.isLinux {
+                window-decoration = "none";
+                gtk-adwaita = false;
+              }
+            );
       };
     }
   ];
