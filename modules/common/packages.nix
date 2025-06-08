@@ -56,6 +56,8 @@ in
       }
       // optionalAttrs (config.isLinux && config.isDesktop) {
         inherit (pkgs)
+          xcopy
+
           thunderbird
           krita
           ;
