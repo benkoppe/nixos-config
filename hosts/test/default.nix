@@ -12,6 +12,8 @@ lib.nixosSystem' (
   {
     imports = collectNix ./. |> remove ./default.nix;
 
+    type = "vm";
+
     users.users = {
       root = { };
       test = {

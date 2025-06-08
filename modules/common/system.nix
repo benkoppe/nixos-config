@@ -16,7 +16,8 @@ in
 
     type = mkValue "desktop";
 
-    isDesktop = mkConst <| config.type == "desktop";
+    isDesktop = mkConst <| (config.type == "desktop" || config.type == "vm");
     isServer = mkConst <| config.type == "server";
+    isVM = mkConst <| config.type == "vm";
   };
 }
