@@ -32,7 +32,18 @@ merge
   };
 
   home-manager.sharedModules = [
+    merge
     {
+      xsession.windowManager.i3 = enabled {
+        config = {
+          modifier = "Mod4";
+          startup = [
+          ];
+        };
+      };
+    }
+    (mkIf config.isVM {
+      # fix broken spice-vdagent on i3
       home.file."${resizeScriptPath}" = {
         text = ''
           #! /usr/bin/env nix-shell
@@ -47,21 +58,16 @@ merge
         executable = true;
       };
 
-      xsession.windowManager.i3 = enabled {
-        config = {
-          modifier = "Mod4";
-          startup = [
-            {
-              command = "spice-vdagent";
-              always = true;
-            }
-            {
-              command = "${resizeScriptPath} &";
-              always = true;
-            }
-          ];
-        };
-      };
-    }
+      xsession.windowManager.i3.config.startup = [
+        {
+          command = "spice-vdagent";
+          always = true;
+        }
+        {
+          command = "${resizeScriptPath} &";
+          always = true;
+        }
+      ];
+    })
   ];
 }
