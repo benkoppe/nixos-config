@@ -30,6 +30,7 @@ merge
               inherit (pkgs)
                 ripgrep
                 fzf
+                xclip
 
                 ## LSPs & formatters (this is basically mason)
 
