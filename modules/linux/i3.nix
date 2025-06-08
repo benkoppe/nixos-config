@@ -42,8 +42,8 @@ merge
         spice-vdagent
         $(
           xev -root -event randr |
-            grep --line-buffered
-            while read ; do
+            grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+            while read _; do
               xrandr --output Virtual-1 --auto
             done
         ) &
