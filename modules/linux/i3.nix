@@ -35,14 +35,24 @@ merge
   home-manager.sharedModules = [
     (
       let
-        modifier = "Mod4";
+        mod = "Mod4";
       in
       {
         xsession.windowManager.i3 = enabled {
           config = {
-            modifier = modifier;
+            modifier = mod;
             keybindings = mkOptionDefault {
-              "${modifier}+b" = "exec brave";
+              "${mod}+b" = "exec brave";
+
+              "${mod}+h" = "focus left";
+              "${mod}+j" = "focus down";
+              "${mod}+k" = "focus up";
+              "${mod}+l" = "focus right";
+
+              "${mod}+Shift+h" = "move left";
+              "${mod}+Shift+j" = "move down";
+              "${mod}+Shift+k" = "move up";
+              "${mod}+Shift+l" = "move right";
             };
           };
         };
