@@ -32,18 +32,24 @@ merge
   };
 
   home-manager.sharedModules = [
-    merge
-    {
-      xsession.windowManager.i3 = enabled {
-        config = {
-          modifier = "Mod4";
-          startup = [
-          ];
+    (
+      let
+        modifier = "Mod4";
+      in
+      {
+        xsession.windowManager.i3 = enabled {
+          config = {
+            modifier = modifier;
+            keybindings = {
+              "${modifier}+b" = "exec brave";
+            };
+          };
         };
-      };
-    }
+      }
+    )
+
+    # fix broken spice-vdagent on i3
     (mkIf config.isVM {
-      # fix broken spice-vdagent on i3
       home.file."${resizeScriptPath}" = {
         text = ''
           #! /usr/bin/env nix-shell
