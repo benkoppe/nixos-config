@@ -37,6 +37,17 @@ merge
           modifier = "Mod4";
         };
       };
+
+      xsession.profileExtra = ''
+        spice-vdagent
+        $(
+          xev -root -event randr |
+            grep --line-buffered
+            while read ; do
+              xrandr --output Virtual-1 --auto
+            done
+        ) &
+      '';
     }
   ];
 }
