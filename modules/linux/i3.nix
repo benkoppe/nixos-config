@@ -11,6 +11,7 @@ let
     enabled
     disabled
     ;
+  resizeScriptPath = ".local/bin/resize-on-randr.sh";
 in
 merge
 <| mkIf config.isDesktop {
@@ -32,6 +33,20 @@ merge
 
   home-manager.sharedModules = [
     {
+      home.file."${resizeScriptPath}" = {
+        text = ''
+          #! /usr/bin/env nix-shell
+          #! nix-shell -i bash -p bash
+
+          xev -root -event randr |
+            grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+            while read _; do
+              xrandr --output Virtual-1 --auto
+            done
+        '';
+        executable = true;
+      };
+
       xsession.windowManager.i3 = enabled {
         config = {
           modifier = "Mod4";
@@ -41,15 +56,7 @@ merge
               always = true;
             }
             {
-              command = ''
-                bash -c '
-                  xev -root -event randr |
-                    grep --line-buffered "subtype XRROutputChangeNotifyEvent" |
-                    while read _; do
-                      xrandr --output Virtual-1 --auto
-                    done
-                ' &
-              '';
+              command = "${resizeScriptPath} &";
               always = true;
             }
           ];
