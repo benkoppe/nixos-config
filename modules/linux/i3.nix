@@ -54,6 +54,16 @@ merge
               "${mod}+Shift+k" = "move up";
               "${mod}+Shift+l" = "move right";
             };
+            focus.followMouse = false;
+            window.commands = [
+              {
+                # add i3 titlebar to ghostty
+                command = "border normal";
+                criteria = {
+                  class = "com.mitchellh.ghostty";
+                };
+              }
+            ];
           };
         };
       }
