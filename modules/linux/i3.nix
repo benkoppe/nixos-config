@@ -35,19 +35,36 @@ merge
       xsession.windowManager.i3 = enabled {
         config = {
           modifier = "Mod4";
+          startup = [
+            {
+              command = "spice-vdagent";
+              always = true;
+            }
+            {
+              command = "$(
+                          xev -root -event randr |
+                            grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+                            while read _; do
+                              xrandr --output Virtual-1 --auto
+                            done
+                          ) &
+                        ";
+              always = true;
+            }
+          ];
         };
       };
 
-      xsession.initExtra = ''
-        spice-vdagent
-        $(
-          xev -root -event randr |
-            grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
-            while read _; do
-              xrandr --output Virtual-1 --auto
-            done
-        ) &
-      '';
+      # xsession.initExtra = ''
+      #   spice-vdagent
+      #   $(
+      #     xev -root -event randr |
+      #       grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+      #       while read _; do
+      #         xrandr --output Virtual-1 --auto
+      #       done
+      #   ) &
+      # '';
     }
   ];
 }
