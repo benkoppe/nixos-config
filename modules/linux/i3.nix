@@ -42,13 +42,13 @@ merge
             }
             {
               command = ''
-                $(
+                bash -c '
                   xev -root -event randr |
-                    grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
+                    grep --line-buffered "subtype XRROutputChangeNotifyEvent" |
                     while read _; do
                       xrandr --output Virtual-1 --auto
                     done
-                ) &
+                ' &
               '';
               always = true;
             }
