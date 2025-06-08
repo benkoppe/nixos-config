@@ -38,7 +38,7 @@ merge
         };
       };
 
-      xsession.profileExtra = ''
+      xsession.initExtra = ''
         spice-vdagent
         $(
           xev -root -event randr |
