@@ -1,6 +1,12 @@
 { config, lib, ... }:
 let
-  inherit (lib) enabled mkIf merge;
+  inherit (lib)
+    enabled
+    mkIf
+    merge
+    mkDefault
+    mkForce
+    ;
 in
 merge
   (mkIf config.isDesktop {
@@ -29,6 +35,12 @@ merge
     # services.displayManager.autoLogin.enable = true;
     # services.displayManager.autoLogin.user = "test";
 
+    home-manager.sharedModules = [
+      {
+        xsession.initExtra = mkDefault "";
+      }
+    ];
+
   })
   (
     mkIf config.isVM {
@@ -36,5 +48,12 @@ merge
       services.qemuGuest.enable = true;
       # Add spice-vdagent
       services.spice-vdagentd.enable = true;
+
+      home-manager.sharedModules = [
+        {
+          # don't turn off 'display'
+          xsession.initExtra = mkForce "xset s off -dpms";
+        }
+      ];
     }
   )
