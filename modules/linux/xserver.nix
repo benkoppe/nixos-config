@@ -23,6 +23,7 @@ merge
     {
       xsession.initExtra = ''
         # auto resize in response to VM resizes
+        spice-vdagent
         $(
           xev -root -event -randr |
             grep --line-buffered 'subtype XRROutputChangeNotifyEvent' |
