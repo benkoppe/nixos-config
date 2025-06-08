@@ -64,6 +64,7 @@ merge
                 };
               }
             ];
+            defaultWorkspace = "workspace number 1";
           };
         };
       }
