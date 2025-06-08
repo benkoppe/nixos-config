@@ -10,6 +10,7 @@ let
     mkIf
     enabled
     disabled
+    mkOptionDefault
     ;
   resizeScriptPath = ".local/bin/resize-on-randr.sh";
 in
@@ -40,7 +41,7 @@ merge
         xsession.windowManager.i3 = enabled {
           config = {
             modifier = modifier;
-            keybindings = {
+            keybindings = mkOptionDefault {
               "${modifier}+b" = "exec brave";
             };
           };
