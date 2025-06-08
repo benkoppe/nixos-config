@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
-  inherit (lib) merge mkIf enabled;
+  inherit (lib) merge mkIf disabled;
 in
 merge
 <| mkIf config.isDesktop {
-  services.desktopManager.plasma6 = enabled;
+  services.desktopManager.plasma6 = disabled;
 }
