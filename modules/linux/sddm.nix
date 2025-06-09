@@ -68,7 +68,7 @@ let
     };
 in
 merge (
-  mkIf config.isDesktop {
+  mkIf (false && config.isDesktop) {
     # add theme to environment
     environment.systemPackages = with pkgs; [
       (callPackage sddmAstronautTheme {
