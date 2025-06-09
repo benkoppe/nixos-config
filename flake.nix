@@ -46,6 +46,11 @@
     nil.url = "github:oxalica/nil";
 
     mnw.url = "github:Gerg-L/mnw";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
