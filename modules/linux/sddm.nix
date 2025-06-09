@@ -72,7 +72,7 @@ merge (
     # add theme to environment
     environment.systemPackages = with pkgs; [
       (callPackage sddmAstronautTheme {
-        theme = "black_hole";
+        theme = "pixel_sakura";
       })
     ];
 
