@@ -7,9 +7,12 @@ let
   inherit (lib) enabled;
 in
 {
-  environment.shellAliases."nix develop" = "nix develop -c $SHELL";
 
-  programs.zsh = enabled;
+  programs.zsh = enabled {
+    shellAliases = {
+      "nix develop" = "nix develop -c $SHELL";
+    };
+  };
 
   home-manager.sharedModules = [
     {
