@@ -43,6 +43,7 @@ merge
             modifier = mod;
             keybindings = mkOptionDefault {
               "${mod}+b" = "exec brave";
+              "${mod}+Shift+b" = "exec firefox";
 
               "${mod}+h" = "focus left";
               "${mod}+j" = "focus down";
