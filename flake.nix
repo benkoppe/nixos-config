@@ -51,10 +51,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
-    inputs@{ nixpkgs, ... }:
+    inputs@{ nixpkgs, flake-utils, ... }:
     let
       inherit (builtins) readDir;
       inherit (nixpkgs.lib)
@@ -84,5 +86,27 @@
         |> map ({ name, value }: nameValuePair name value.config)
         |> listToAttrs;
     in
-    hostsByType // hostConfigs;
+    hostsByType
+    // hostConfigs
+    // {
+      devShells = flake-utils.lib.eachDefaultSystemMap (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              nix
+              home-manager
+              git
+
+              sops
+              ssh-to-age
+              age
+            ];
+          };
+        }
+      );
+    };
 }
