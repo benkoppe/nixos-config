@@ -43,6 +43,7 @@ merge
               darkreader
               vimium
             ];
+            extensions.autoDisableScopes = 0;
           };
         };
       };
