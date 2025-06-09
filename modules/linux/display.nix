@@ -46,7 +46,7 @@ merge
       home-manager.sharedModules = [
         {
           # don't turn off 'display'
-          xsession.initExtra = mkForce "xset s off -dpms";
+          xsession.initExtra = mkForce "xset s off s noblank -dpms";
         }
       ];
     }
