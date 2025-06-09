@@ -10,10 +10,6 @@ in
 merge (
   mkIf config.isDesktop {
     # use tuigreet as displayManager
-    services.displayManager = {
-      tuigreet = enabled;
-      defaultSession = "none+i3";
-    };
     services.greetd = enabled {
       settings = {
         default_session = {
