@@ -18,6 +18,7 @@ in
 
     isDesktop = mkConst <| (config.type == "desktop" || config.type == "vm");
     isServer = mkConst <| config.type == "server";
+    # graphical VMs ONLY
     isVM = mkConst <| config.type == "vm";
   };
 }
