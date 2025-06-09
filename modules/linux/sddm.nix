@@ -81,6 +81,11 @@ merge (
       sddm = enabled {
         package = pkgs.kdePackages.sddm;
         theme = "sddm-astronaut-theme";
+        extraPackages = with pkgs; [
+          kdePackages.qtmultimedia
+          kdePackages.qtsvg
+          kdePackages.qtvirtualkeyboard
+        ];
       };
       defaultSession = "none+i3";
     };
