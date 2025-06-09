@@ -54,6 +54,9 @@ merge
               "${mod}+Shift+j" = "move down";
               "${mod}+Shift+k" = "move up";
               "${mod}+Shift+l" = "move right";
+
+              # undo default mod+a -> focus parent
+              "${mod}+Shift+a" = "focus child";
             };
             focus.followMouse = false;
             window.commands = [
