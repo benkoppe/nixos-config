@@ -24,8 +24,8 @@ let
       src = fetchFromGitHub {
         owner = "Keyitdev";
         repo = "sddm-astronaut-theme";
-        rev = "";
-        has = "";
+        rev = "bf4d01732084be29cedefe9815731700da865956";
+        hash = "";
       };
 
       propagatedUserEnvPkgs = with qt6; [
