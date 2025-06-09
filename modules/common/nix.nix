@@ -58,6 +58,8 @@ in
 
   nix.optimise.automatic = true;
 
+  nixpkgs.overlays = [ inputs.nur.overlay ];
+
   environment.systemPackages = attrValues {
     inherit (pkgs)
       nh

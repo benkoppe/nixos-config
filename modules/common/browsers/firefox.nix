@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -10,8 +9,6 @@ let
 in
 merge
 <| mkIf (config.isDesktop) {
-  nixpkgs.overlays = [ inputs.nur.overlay ];
-
   home-manager.sharedModules = [
     {
       programs.firefox = enabled {
