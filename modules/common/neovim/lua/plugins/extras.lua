@@ -67,7 +67,7 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
 
-      opts.mapping = cmp.mapping.preset.inset(vim.tbl_extend("force", opts.mapping, {
+      opts.mapping = cmp.mapping.preset.insert(vim.tbl_extend("force", opts.mapping, {
         ["<Down>"] = cmp.config.disable,
         ["<Up>"] = cmp.config.disable,
         ["<CR>"] = cmp.config.disable,
