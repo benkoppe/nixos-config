@@ -16,11 +16,20 @@ let
 in
 merge
 <| mkIf config.isDesktop {
+  environment = {
+    variables.EDITOR = "nvim";
+  };
+
   home-manager.sharedModules = [
     {
       imports = [ inputs.mnw.homeManagerModules.default ];
 
       programs.mnw = enabled {
+        aliases = [
+          "vi"
+          "vim"
+        ];
+
         luaFiles = [ ./init.lua ];
 
         extraBinPath =
