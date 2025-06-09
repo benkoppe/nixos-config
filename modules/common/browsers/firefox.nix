@@ -24,7 +24,6 @@ merge
           };
           DisablePocket = true;
           DisableFirefoxAccounts = true;
-          DisableAccounts = true;
           DisableFirefoxScreenshots = true;
           OverrideFirestRunPage = "";
           OverridePostUpdatePage = "";
