@@ -58,7 +58,7 @@ in
 
   nix.optimise.automatic = true;
 
-  nixpkgs.overlays = [ inputs.nur.overlay.default ];
+  nixpkgs.overlays = [ inputs.nur.overlays.default ];
 
   environment.systemPackages = attrValues {
     inherit (pkgs)
