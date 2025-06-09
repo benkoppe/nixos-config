@@ -23,7 +23,7 @@ merge (
       ];
       # hide the OS choice for bootloaders.
       # requires a keypress to appear
-      loader.timeout = 0;
+      # loader.timeout = 0;
     };
   }
 )
