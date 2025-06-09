@@ -18,5 +18,7 @@ merge (
         };
       };
     };
+    # requires startx to be enabled
+    services.xserver.displayManager.startx = enabled;
   }
 )
