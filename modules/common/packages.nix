@@ -59,6 +59,7 @@ in
       // optionalAttrs (config.isLinux && config.isDesktop) {
         inherit (pkgs)
           xclip
+          flameshot
 
           thunderbird
           krita
