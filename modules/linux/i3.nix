@@ -42,9 +42,14 @@ merge
           config = {
             modifier = mod;
             keybindings = mkOptionDefault {
+              # programs
               "${mod}+b" = "exec brave";
               "${mod}+Shift+b" = "exec firefox";
 
+              # screenshots
+              "Print" = "exec flameshot gui";
+
+              # navigation
               "${mod}+h" = "focus left";
               "${mod}+j" = "focus down";
               "${mod}+k" = "focus up";
