@@ -47,6 +47,7 @@ in
           go
           jdk
           lld
+          llvm
           maven
           zig
           python314
