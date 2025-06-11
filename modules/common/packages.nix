@@ -50,6 +50,7 @@ in
           llvm
           maven
           zig
+          cargo
           python314
           uv
 
