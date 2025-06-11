@@ -74,6 +74,12 @@ merge
                 tailwindcss-language-server
                 vue-language-server
                 vtsls # typescript
+                typescript-language-server
+                javascript-typescript-langserver
+
+                # rust
+                rust-analyzer
+                lldb
 
                 # random
                 bash-language-server
