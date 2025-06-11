@@ -26,6 +26,7 @@ in
           vim
           just
           devenv
+          yazi
 
           treefmt
           nixfmt-rfc-style
