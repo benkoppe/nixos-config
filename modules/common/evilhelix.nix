@@ -174,7 +174,7 @@ in
         basedpyright
 
         # RUST
-        rust-analyzer-nightly
+        rust-analyzer
         lldb
 
         # TYPESCRIPT & OTHERS
