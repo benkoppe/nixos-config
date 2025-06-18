@@ -18,7 +18,10 @@ lib.nixosSystem' (
       test = {
         description = "Test";
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "docker"
+        ];
         shell = pkgs.zsh;
       };
     };
